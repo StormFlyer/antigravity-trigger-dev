@@ -72,11 +72,35 @@ This framework includes a built-in Hono web server to trigger tasks via HTTP.
 - Development: `npm run dev:web`
 - Production: `npm run start:web`
 
+### Webhook Security
+
+For production deployments, you can secure your webhooks by setting the `WEBHOOK_SECRET` environment variable. When set, all webhook requests must include this secret.
+
+**Provide the secret via query parameter:**
+```bash
+curl -X POST "http://localhost:3000/api/webhooks/answer-question?agtr_secret=your_secret_here" \
+  -H "Content-Type: application/json" \
+  -d '{"question": "What is AI?"}'
+```
+
+**Or via header:**
+```bash
+curl -X POST "http://localhost:3000/api/webhooks/answer-question" \
+  -H "Content-Type: application/json" \
+  -H "X-Webhook-Secret: your_secret_here" \
+  -d '{"question": "What is AI?"}'
+```
+
+> [!NOTE]
+> If `WEBHOOK_SECRET` is not set in your environment, webhook authentication is disabled and all requests will be accepted.
+
 ### Triggering Tasks
 Send a POST request to `/api/webhooks/<TRIGGER_ID>` with a JSON payload. The payload is passed directly to the task.
 
 **Example:**
 ```bash
+curl -X POST "http://localhost:3000/api/webhooks/answer-question" \
+  -H "Content-Type: application/json" \
   -d '{"question": "What is AI?"}'
 ```
 

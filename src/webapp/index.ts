@@ -14,6 +14,19 @@ app.get('/', (c) => {
 app.post('/api/webhooks/:triggerId', async (c) => {
     const triggerId = c.req.param('triggerId')
 
+    // Validate webhook secret if WEBHOOK_SECRET is set
+    const expectedSecret = process.env.WEBHOOK_SECRET
+    if (expectedSecret) {
+        // Check for secret in query parameter or header
+        const querySecret = c.req.query('agtr_secret')
+        const headerSecret = c.req.header('X-Webhook-Secret')
+        const providedSecret = querySecret || headerSecret
+
+        if (!providedSecret || providedSecret !== expectedSecret) {
+            return c.json({ error: 'Unauthorized: Invalid or missing webhook secret' }, 401)
+        }
+    }
+
     let payload = {}
     try {
         const contentType = c.req.header('content-type')
