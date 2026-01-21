@@ -42,6 +42,16 @@ Follow the interactive prompts to authorize and select your project.
 
 For more information, visit the [deployment documentation](https://trigger.dev/docs/deployment/overview).
 
+### Docker Deployment
+Deploy the webhook web server using Docker:
+```bash
+docker-compose up -d
+```
+
+The web server will be available at `http://localhost:3000`. Deploy Trigger.dev workflows separately using `npm run deploy`.
+
+For detailed Docker instructions, see [Docker Deployment Guide](docs/DOCKER.md).
+
 ### Creating Workflows with AI
 You can generate a new workflow by describing it:
 ```bash
