@@ -58,7 +58,25 @@ You can generate a new workflow by describing it:
 ```bash
 npm run create-workflow "Create a task that runs every 5 minutes and checks an API endpoint"
 ```
+
 Or use the integrated Agent Workflow if running within the Antigravity environment.
+
+## Debugging
+
+### Run Snapshots
+To help agents debug failed runs, you can capture a snapshot of the latest run's inputs, outputs, and errors.
+
+- **Development**:
+  ```bash
+  npm run snapshot:dev
+  ```
+
+- **Production**:
+  ```bash
+  npm run snapshot:prod
+  ```
+
+Snapshots are saved to `.agent/snapshots/latest.md`.
 
 ## Directory Structure
 - `src/trigger/`: Where your workflow task files live.

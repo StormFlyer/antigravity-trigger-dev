@@ -31,7 +31,10 @@
     "deploy": "npx trigger.dev@latest deploy",
     "dev": "npx trigger.dev@latest dev",
     "dev:web": "ts-node src/webapp/index.ts",
-    "start:web": "ts-node src/webapp/index.ts"
+    "start:web": "ts-node src/webapp/index.ts",
+    "snapshot": "ts-node src/agent/snapshot.ts --dev",
+    "snapshot:dev": "ts-node src/agent/snapshot.ts --dev",
+    "snapshot:prod": "ts-node src/agent/snapshot.ts --prod"
   },
   "version": "1.0.0"
 }

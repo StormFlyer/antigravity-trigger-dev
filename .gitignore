@@ -8,3 +8,6 @@ coverage
 
 # Trigger.dev
 .trigger
+
+# Agent snapshots
+.agent/snapshots
